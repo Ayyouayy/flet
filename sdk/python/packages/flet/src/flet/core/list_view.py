@@ -70,6 +70,7 @@ class ListView(ConstrainedControl, ScrollableControl, AdaptiveControl):
         clip_behavior: Optional[ClipBehavior] = None,
         semantic_child_count: Optional[int] = None,
         cache_extent: OptionalNumber = None,
+        build_controls_on_demand: Optional[bool] = None,
         #
         # ScrollableControl specific
         #
@@ -162,6 +163,7 @@ class ListView(ConstrainedControl, ScrollableControl, AdaptiveControl):
         self.clip_behavior = clip_behavior
         self.semantic_child_count = semantic_child_count
         self.cache_extent = cache_extent
+        self.build_controls_on_demand = build_controls_on_demand
 
     def _get_control_name(self):
         return "listview"
@@ -275,3 +277,12 @@ class ListView(ConstrainedControl, ScrollableControl, AdaptiveControl):
     @semantic_child_count.setter
     def semantic_child_count(self, value: Optional[int]):
         self._set_attr("semanticChildCount", value)
+
+    # build_controls_on_demand
+    @property
+    def build_controls_on_demand(self) -> Optional[bool]:
+        return self._get_attr("buildControlsOnDemand", data_type="bool", def_value=True)
+
+    @build_controls_on_demand.setter
+    def build_controls_on_demand(self, value: Optional[bool]):
+        self._set_attr("buildControlsOnDemand", value)

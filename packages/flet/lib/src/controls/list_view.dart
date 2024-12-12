@@ -67,6 +67,8 @@ class _ListViewControlState extends State<ListViewControl> {
 
     List<Control> ctrls = widget.children.where((c) => c.isVisible).toList();
     var scrollDirection = horizontal ? Axis.horizontal : Axis.vertical;
+    var buildControlsOnDemand =
+        widget.control.attrBool("buildControlsOnDemand", true)!;
     var prototypeItem = firstItemPrototype && widget.children.isNotEmpty
         ? createControl(widget.control, ctrls[0].id, disabled,
             parentAdaptive: adaptive)
@@ -80,9 +82,8 @@ class _ListViewControlState extends State<ListViewControl> {
         var shrinkWrap =
             (!horizontal && constraints.maxHeight == double.infinity) ||
                 (horizontal && constraints.maxWidth == double.infinity);
-
-        Widget child = spacing > 0
-            ? ListView.separated(
+        Widget child = !buildControlsOnDemand
+            ? ListView(
                 controller: _controller,
                 cacheExtent: cacheExtent,
                 reverse: reverse,
@@ -90,46 +91,59 @@ class _ListViewControlState extends State<ListViewControl> {
                 scrollDirection: scrollDirection,
                 shrinkWrap: shrinkWrap,
                 padding: padding,
-                itemCount: widget.children.length,
-                itemBuilder: (context, index) {
-                  return createControl(
-                      widget.control, visibleControls[index].id, disabled,
-                      parentAdaptive: adaptive);
-                },
-                separatorBuilder: (context, index) {
-                  return horizontal
-                      ? dividerThickness == 0
-                          ? SizedBox(width: spacing)
-                          : VerticalDivider(
-                              width: spacing, thickness: dividerThickness)
-                      : dividerThickness == 0
-                          ? SizedBox(height: spacing)
-                          : Divider(
-                              height: spacing, thickness: dividerThickness);
-                },
-              )
-            : ListView.builder(
-                controller: _controller,
-                clipBehavior: clipBehavior,
                 semanticChildCount: semanticChildCount,
-                reverse: reverse,
-                cacheExtent: cacheExtent,
-                scrollDirection: scrollDirection,
-                shrinkWrap: shrinkWrap,
-                padding: padding,
-                itemCount: widget.children.length,
                 itemExtent: itemExtent,
-                itemBuilder: (context, index) {
-                  return createControl(
-                      widget.control, visibleControls[index].id, disabled,
-                      parentAdaptive: adaptive);
-                },
-                prototypeItem: firstItemPrototype && widget.children.isNotEmpty
-                    ? createControl(
-                        widget.control, visibleControls[0].id, disabled,
-                        parentAdaptive: adaptive)
-                    : null,
-              );
+                children: ctrls
+                    .map((c) => createControl(widget.control, c.id, disabled,
+                        parentAdaptive: adaptive))
+                    .toList(),
+                prototypeItem: prototypeItem,
+              )
+            : spacing > 0
+                ? ListView.separated(
+                    controller: _controller,
+                    cacheExtent: cacheExtent,
+                    reverse: reverse,
+                    clipBehavior: clipBehavior,
+                    scrollDirection: scrollDirection,
+                    shrinkWrap: shrinkWrap,
+                    padding: padding,
+                    itemCount: widget.children.length,
+                    itemBuilder: (context, index) {
+                      return createControl(
+                          widget.control, ctrls[index].id, disabled,
+                          parentAdaptive: adaptive);
+                    },
+                    separatorBuilder: (context, index) {
+                      return horizontal
+                          ? dividerThickness == 0
+                              ? SizedBox(width: spacing)
+                              : VerticalDivider(
+                                  width: spacing, thickness: dividerThickness)
+                          : dividerThickness == 0
+                              ? SizedBox(height: spacing)
+                              : Divider(
+                                  height: spacing, thickness: dividerThickness);
+                    },
+                  )
+                : ListView.builder(
+                    controller: _controller,
+                    clipBehavior: clipBehavior,
+                    semanticChildCount: semanticChildCount,
+                    reverse: reverse,
+                    cacheExtent: cacheExtent,
+                    scrollDirection: scrollDirection,
+                    shrinkWrap: shrinkWrap,
+                    padding: padding,
+                    itemCount: widget.children.length,
+                    itemExtent: itemExtent,
+                    itemBuilder: (context, index) {
+                      return createControl(
+                          widget.control, ctrls[index].id, disabled,
+                          parentAdaptive: adaptive);
+                    },
+                    prototypeItem: prototypeItem,
+                  );
 
         child = ScrollableControl(
             control: widget.control,
