@@ -10,6 +10,7 @@ from flet.core.types import (
     ClipBehavior,
     OffsetValue,
     OptionalControlEventCallable,
+    OptionalEventCallable,
     PaddingValue,
     ResponsiveNumber,
     RotateValue,
@@ -75,7 +76,7 @@ class ListView(ConstrainedControl, ScrollableControl, AdaptiveControl):
         auto_scroll: Optional[bool] = None,
         reverse: Optional[bool] = None,
         on_scroll_interval: OptionalNumber = None,
-        on_scroll: Optional[Callable[[OnScrollEvent], None]] = None,
+        on_scroll: OptionalEventCallable[OnScrollEvent] = None,
         #
         # ConstrainedControl
         #
