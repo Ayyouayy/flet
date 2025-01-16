@@ -1,4 +1,5 @@
 import argparse
+import glob
 import os
 import shutil
 import sys
@@ -224,22 +225,15 @@ class Command(BaseCommand):
             hook_config.temp_bin_dir = copy_flet_bin()
 
             if hook_config.temp_bin_dir is not None:
-                # delete fletd/fletd.exe
-                fletd_path = os.path.join(
-                    hook_config.temp_bin_dir, "fletd.exe" if is_windows() else "fletd"
-                )
-                if os.path.exists(fletd_path):
-                    os.remove(fletd_path)
-
                 if is_windows():
                     from flet_cli.__pyinstaller.win_utils import (
                         update_flet_view_icon,
                         update_flet_view_version_info,
                     )
 
-                    exe_path = os.path.join(
-                        hook_config.temp_bin_dir, "flet", "flet.exe"
-                    )
+                    exe_path = glob.glob(
+                        os.path.join(hook_config.temp_bin_dir, "flet", "*.exe")
+                    )[0]
                     if os.path.exists(exe_path):
                         # icon
                         if options.icon:

@@ -1,3 +1,4 @@
+import glob
 import os
 import plistlib
 import shutil
@@ -16,7 +17,7 @@ def unpack_app_bundle(tar_path):
         safe_tar_extractall(tar_arch, bin_dir)
     os.remove(tar_path)
 
-    return os.path.join(bin_dir, "Flet.app")
+    return glob.glob(os.path.join(bin_dir, "*.app"))[0]
 
 
 def update_flet_view_icon(app_path, icon_path):
