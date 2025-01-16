@@ -3,6 +3,7 @@ name = "flet_client"
 version = "0.1.0"
 description = ""
 readme = "README.md"
+requires-python = ">=3.9,<4.0"
 dependencies = [
   "flet==0.26.0.dev3999"
 ]
