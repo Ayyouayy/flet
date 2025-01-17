@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.9,<4.0"
 dependencies = [
   "flet @ git+https://github.com/flet-dev/flet.git@main#subdirectory=sdk/python/packages/flet",
-  "flet-ads >= 0.1.0",
+  # "flet-ads @ git+https://github.com/flet-dev/flet-ads.git@0.1.0",
   # "flet-audio",
   # "flet-audio-recorder",
   # "flet-flashlight",
@@ -20,8 +20,6 @@ dependencies = [
 ]
 
 [tool.flet.flutter.pubspec.dependency_overrides.flet.git]
-url = "https://github.com/flet-dev/flet.git"
-ref = "main"
 path = "packages/flet"
 
 [tool.poetry]
