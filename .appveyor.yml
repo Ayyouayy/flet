@@ -264,7 +264,7 @@ for:
       # - python -m venv .venv
       # - source .venv/bin/activate
       - poetry install
-      - poetry run flet build macos -v
+      - poetry run flet build macos --template-ref "0.26.0" -v
       - ls -al build/macos
       # - flutter build macos --build-name=$APPVEYOR_BUILD_VERSION
       # - tar -czvf flet-macos.tar.gz -C build/macos/Build/Products/Release Flet.app
