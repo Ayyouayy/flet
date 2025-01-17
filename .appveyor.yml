@@ -11,6 +11,7 @@ skip_commits:
 environment:
   python_stack: python 3.12
   FLUTTER_VERSION: 3.27.2
+  FLET_CLI_NO_RICH_OUTPUT: 1
   GITHUB_TOKEN:
     secure: 9SKIwc3VSfYJ5IChvNR74hQprJ0DRmcV9pPX+8KyE6IXIdfMsX6ikeUmMhJGRu3ztkZaF45jmU7Xn/6tauXQXhDBxK1N8kFHFSAnq6LjUXyhS0TZKX/H+jDozBeVbCXp
   TWINE_USERNAME: __token__
@@ -257,7 +258,7 @@ for:
       - . ci/common.sh
       - HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
       - source ci/install_flutter.sh
-      - export PATH=$HOME/fvm/default/bin:$PATH
+      - flutter doctor
 
     build_script:
       # Flutter macOS client
