@@ -5,7 +5,7 @@ description = ""
 readme = "README.md"
 requires-python = ">=3.9,<4.0"
 dependencies = [
-  "flet @ git+https://github.com/flet-dev/flet.git@main#sdk/python/packages/flet",
+  "flet @ git+https://github.com/flet-dev/flet.git@main#subdirectory=sdk/python/packages/flet",
   "flet-ads",
   # "flet-audio",
   # "flet-audio-recorder",
