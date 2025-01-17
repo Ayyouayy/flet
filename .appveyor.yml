@@ -256,7 +256,7 @@ for:
     install:
       - . ci/common.sh
       - HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
-      #- source ci/install_flutter.sh
+      - source ci/install_flutter.sh
 
     build_script:
       # Flutter macOS client
