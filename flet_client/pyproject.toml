@@ -19,8 +19,8 @@ dependencies = [
   # "flet-webview"
 ]
 
-[tool.flet.flutter.pubspec.dependency_overrides.flet.git]
-path = "packages/flet"
+[tool.flet.flutter.pubspec.dependency_overrides.flet]
+path = "../../../packages/flet"
 
 [tool.poetry]
 package-mode = false
