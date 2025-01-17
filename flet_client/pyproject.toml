@@ -28,7 +28,8 @@ path = "packages/flet"
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-flet = {extras = ["all"], git = "https://github.com/flet-dev/flet.git", rev = "main", subdirectory = "sdk/python/packages/flet"}
+flet = { git = "https://github.com/flet-dev/flet.git", rev = "main", subdirectory = "sdk/python/packages/flet"}
+flet-cli = { git = "https://github.com/flet-dev/flet.git", rev = "main", subdirectory = "sdk/python/packages/flet-cli"}
 
 [build-system]
 requires = ["poetry-core"]
