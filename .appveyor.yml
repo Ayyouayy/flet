@@ -34,7 +34,7 @@ environment:
     - job_name: Build Flet for macOS
       job_group: build_flet
       job_depends_on: build_flet_package
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-ventura
 
     # - job_name: Build Flet for Linux
     #   job_group: build_flet_linux
