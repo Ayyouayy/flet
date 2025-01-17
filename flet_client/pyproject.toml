@@ -3,10 +3,23 @@ name = "flet_client"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.9,<4.0"
 dependencies = [
-  "flet==0.26.0.dev3999"
+  "flet==0.26.0.dev3999",
+  "flet-ads",
+  # "flet-audio",
+  # "flet-audio-recorder",
+  # "flet-flashlight",
+  # "flet-geolocator",
+  # "flet-lottie",
+  # "flet-map",
+  # "flet-permission-handler",
+  # "flet-rive",
+  # "flet-video",
+  # "flet-webview"
 ]
+
+[tool.poetry]
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]

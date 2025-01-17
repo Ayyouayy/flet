@@ -261,6 +261,7 @@ for:
     build_script:
       # Flutter macOS client
       - pushd flet_client
+      - poetry install
       - poetry run flet build macos -v
       - ls -al build/macos
       # - flutter build macos --build-name=$APPVEYOR_BUILD_VERSION
