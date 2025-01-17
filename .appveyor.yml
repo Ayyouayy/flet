@@ -257,6 +257,7 @@ for:
       - . ci/common.sh
       - HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
       - source ci/install_flutter.sh
+      - export PATH=$HOME/fvm/default/bin:$PATH
 
     build_script:
       # Flutter macOS client
